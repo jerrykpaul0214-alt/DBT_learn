@@ -11,15 +11,9 @@ with cte as(
     ELSE 'BUISNESSDAY'
     END AS DAYTYPE,
 
-    CASE
-    WHEN MONTH(TO_TIMESTAMP(started_at)) IN (11,12,1,2)
-    THEN 'WINTER'
-    WHEN MONTH(TO_TIMESTAMP(started_at)) in( 3,4,5)
-    THEN 'SPRING'
-    WHEN MONTH(TO_TIMESTAMP(started_at)) in(5,6,7)
-    THEN 'SUMMER'
-    ELSE'RAINY'
-    END AS SEASONS,
+    {{ function1('started_at')}} as  seasons,
+
+    {{ function('STARTED_AT') }},
 
     from
     {{ source('demo', 'bike') }}
