@@ -18,9 +18,7 @@ with cte as(
     from
     {{ source('demo', 'bike') }}
     where STARTED_AT != 'started_at'
-    LIMIT 10 
-
-
+   
 )
 
 select * from cte
